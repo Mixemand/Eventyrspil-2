@@ -6,9 +6,11 @@ public class gameManager : MonoBehaviour
 {
     [SerializeField] private GameObject tower;
 
+    sceneManager sm;
+
     void Start()
     {
-        
+        sm = GameObject.Find("SceneManager").GetComponent<sceneManager>();
     }
 
     void Update()
@@ -28,6 +30,11 @@ public class gameManager : MonoBehaviour
                 Instantiate(tower, tileT.position, Quaternion.identity);
                 tileT.GetComponent<tile>().IsPlaced = true;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            sm.MainMenu();
         }
     }
 }
