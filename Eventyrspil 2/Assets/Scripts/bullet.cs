@@ -5,7 +5,8 @@ using UnityEngine.Experimental.Rendering;
 
 public class bullet : MonoBehaviour
 {
-    [SerializeField] float Speed;
+    [SerializeField] private float Speed;
+    [SerializeField] private string enemyTag;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,11 +16,15 @@ public class bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       transform.position += new Vector3(Speed, 0, 0) * Time.deltaTime;
-
+        transform.position += new Vector3(Speed, 0, 0) * Time.deltaTime;
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        if(collision.gameObject.layer == 3)
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(1);
+            Destroy(gameObject);
+        }
     }
 }

@@ -34,6 +34,7 @@ public class mapGrid : MonoBehaviour
                 if(i == 0)
                 {
                     spot.GetComponent<SpriteRenderer>().color = mowerColor;
+                    spot.tag = "Untagged";
                 }
             }
         }
